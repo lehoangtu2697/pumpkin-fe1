@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'devextreme/dist/css/dx.light.css';
+import useFetchPostsData from './api/posts';
+import PostsDataGrid from './components/PostsDataGrid';
+import Authentication from './components/Authentication';
 
 function App() {
+  const postsData = useFetchPostsData();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Authentication/>
+      <h1 style={{paddingLeft: "20px", textAlign: "left" }}>Posts Management</h1>
+      <div id="data-grid-demo" style={{ padding: "0 20px" }}>
+        <PostsDataGrid dataSource={postsData} />
+      </div>
     </div>
   );
 }
